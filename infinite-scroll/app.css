@@ -1,0 +1,17 @@
+* {
+  color: #000;
+}
+.loader {
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loader.show {
+  opacity: 1;
+}
+quoteBlock {
+  padding: 20px;
+  border-bottom: 1px solid;
+  display: block;
+}
