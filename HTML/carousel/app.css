@@ -1,0 +1,20 @@
+.carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  height: 300px;
+  width: 300px;
+  overflow: hidden;
+}
+.slider {
+  display: flex;
+  transition: transform 600ms ease-in;
+}
+.slider img {
+  height: 300px;
+  width: 300px;
+  object-fit: cover;
+}
