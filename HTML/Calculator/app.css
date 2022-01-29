@@ -1,0 +1,13 @@
+h1 {
+  text-align: center;
+}
+.calculator {
+  width: 95px;
+  margin: auto;
+}
+.output {
+  text-align: right;
+}
+.panel .row {
+  display: flex;
+}
