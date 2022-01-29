@@ -1,0 +1,36 @@
+.accordian {
+  width: 600px;
+  margin: auto;
+}
+
+.section {
+  background-color: #ccc;
+  padding: 10px;
+  border: 1px solid #aaa;
+  border-radius: 2px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+.section:after {
+    content: "+";
+    font-size: 15px;
+    font-weight: bold;
+    border: 1px solid;
+    padding: 0 5px;
+    background: #bbb;
+}
+.section.active::after {
+  content: "-";
+}
+.active, .section:hover {
+  background-color: #aaa;
+  color: #fff;
+}
+
+.section ~p {
+  margin: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 600ms ease-out;
+}
