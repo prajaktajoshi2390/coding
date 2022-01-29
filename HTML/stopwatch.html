@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Infinite Scroll</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width = device-width, initial-scale=1.0" />
+    <style>
+      .timeContainer {
+        display: flex;
+      }
+      .btnContainer {
+        display: flex;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="timeContainer">
+        <span class="minutes time">00</span>
+        <span>---</span>
+        <span class="seconds time">00</span>
+        <span>---</span>
+        <span class="milliseconds time">00</span>
+      </div>
+      <div class="btnContainer">
+        <button class="startBtn">Start</button>
+        <button class="stopBtn">Stop</button>
+        <button class="resetBtn">Reset</button>
+
+      </div>
+    </div>
+    <script>
+      (function(){
+        const stopWatch = (element) => {
+          const container = document.querySelector(`.${element}`);
+          let value = null;
+          let watchTimer = null;
+          
+          const showTimer = (time) => {
+            const [min, sec, ms] = container.querySelectorAll(".time");
+            if(!time) {
+              min.innerHTML = '00';
+              sec.innerHTML = '00';
+              ms.innerHTML = '00';
+              return;
+            }
+            
+            min.innerHTML = time.getMinutes();
+            sec.innerHTML = time.getSeconds();
+            ms.innerHTML = time.getMilliseconds();
+          }
+          const startTimer = () => {
+            let startTime = value ? new Date(new Date() - new Date(value)) : new Date();
+
+            const runTimer = () => {
+              watchTimer = setTimeout(() => {
+                value = new Date() - startTime;
+                showTimer(new Date(value));
+                runTimer();
+              }, 100);
+            };
+            runTimer();
+          }
+          
+          const resetTimer = () => {
+            watchTimer && clearTimeout(watchTimer);
+            value = null;
+            watchTimer = null;
+            showTimer(null);
+          }
+
+          const stopTimer = () => {
+            watchTimer && clearTimeout(watchTimer);
+          }
+          container.querySelector(".startBtn").addEventListener("click", () => {
+            startTimer();
+          });
+          container.querySelector(".stopBtn").addEventListener("click", () => {
+            stopTimer();
+          });
+          container.querySelector(".resetBtn").addEventListener("click", () => {
+            resetTimer();
+          });
+        };
+        stopWatch("container");
+      })();
+    </script>
+  </body>
+</html>
