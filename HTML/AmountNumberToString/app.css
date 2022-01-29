@@ -1,0 +1,15 @@
+h1 {
+  text-align: center;
+}
+.amountToString {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.amountToString > div {
+  display: flex;
+}
+.output {
+  font-weight: bold;
+  text-align: center;
+}
