@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ratings</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width = device-width, initial-scale=1.0" />
+    <style>
+     .ratings ul {
+       list-style: none;
+       display: flex;
+       color: #ccc;
+       font-size: 40px;
+       cursor: default;
+     }
+     .ratings li.highlight {
+       color: yellow;
+     }
+     .ratings li.selected {
+       color: green;
+     }
+
+    </style>
+  </head>
+  <body>
+    <div class="ratings">
+      <ul>
+        <li class="star">&starf;</li>
+        <li class="star">&starf;</li>
+        <li class="star">&starf;</li>
+        <li class="star">&starf;</li>
+        <li class="star">&starf;</li>
+      </ul>
+    </div>
+    <script>
+      (function(){
+        const getRatings = (element) => {
+          const container = document.querySelector(`.${element}`);
+          const stars = container.querySelectorAll(".star");
+          let ratings = 0;
+
+          const addRemoveClass = (action, index, className) => {
+            stars.forEach((star, starIndex) => {
+              if(action === "add" && starIndex <= index) {
+                star.classList.add(`${className}`);
+              } else if(action === "remove" && starIndex <= index) {
+                star.classList.remove(`${className}`);
+              } else {
+                star.classList.remove(`${className}`);
+              }
+            })
+          }
+
+          stars.forEach((star, index) => {
+            star.addEventListener("mouseover", () => {
+              addRemoveClass("add", index, "highlight");
+            });
+
+            star.addEventListener("mouseleave", () => {
+              addRemoveClass("remove", index, "highlight");
+            });
+
+            star.addEventListener("click", () => {
+              addRemoveClass("add", index, "selected");
+              ratings = index + 1;
+              // alert(ratings);
+            });
+          });
+        
+          
+        };
+        getRatings("ratings");
+      })();
+    </script>
+  </body>
+</html>
