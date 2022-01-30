@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Check All-Uncheck All</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width = device-width, initial-scale=1.0" />
+    <style>
+    </style>
+  </head>
+  <body>
+    <div class="checkUncheckWrap">
+      <div class="checkUncheck">
+        <label for="all">All</label> <input type="checkbox" id="all" />
+        <label for="none">None</label> <input type="checkbox" id="none" />
+      </div>
+      <div class="list">
+        <label for="food1">Food 1</label> <input type="checkbox" id="food1" />
+        <label for="food2">Food 2</label> <input type="checkbox" id="food2" />
+        <label for="food3">Food 3</label> <input type="checkbox" id="food3" />
+        <label for="food4">Food 4</label> <input type="checkbox" id="food4" />
+      </div>
+    </div>
+    <script>
+      (function(){
+        const checkUncheckAll = (state) => {
+          let checkboxes = document.querySelectorAll(".checkUncheckWrap input[type='checkbox']");
+          checkboxes = Array.from(checkboxes);
+
+          checkboxes.forEach((element) => {
+            element.checked = state;
+          });
+        };
+        document.querySelector(".checkUncheckWrap").addEventListener("click", (e) => {
+          if(e.target.type !== "checkbox") {
+            return;
+          }
+
+          if(e.target.id === 'all') {
+            checkUncheckAll(true);
+            document.querySelector("#none").checked = false;
+          } else if(e.target.id === 'none') {
+            checkUncheckAll(false);
+            document.querySelector("#all").checked = false;
+          } else {
+            let checked = true;
+            let unchecked = true;
+
+            Array.from(document.querySelectorAll(".list input[type='checkbox']")).forEach((element) => {
+              checked = checked && element.checked;
+              unchecked = unchecked && !element.checked;
+            });
+
+            document.querySelector("#all").checked = checked;
+            document.querySelector("#none").checked = unchecked;
+          }
+
+        })
+      })();
+    </script>
+  </body>
+</html>
