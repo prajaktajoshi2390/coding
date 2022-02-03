@@ -1,18 +1,45 @@
-const Node = require('./index');
+class Node {
+  constructor(data) {
+    this.data = data;
+    this.children = [];
+  }
+  add(data) {
+    this.children.push(new Node(data));
+  }
 
-function levelwidth(root) {
-  let counters = [0];
-  let arr = [root, 's'];
+  remove(data) {
+    this.children = this.children.filter(node => {
+      return node.data !== data;
+    });
+  }
+}
 
-  while(arr.length > 1) {
-    const node = arr.shift();
-    if(node !== 's') {
+class Tree {
+  constructor() {
+    this.root = null;
+  }
+
+  traverseBF(fn) {
+    let arr = [this.root];
+    while(arr.length) {
+      const node = arr.shift();
       arr.push(...node.children);
-      counters[counters.length - 1]++;
-    } else {
-      arr.push('s');
-      counters.push(0);
+      // OR
+      // for(child of arr.children) {
+      //   arr.push(child);
+      // }
+      fn(node);
+    }  
+  }
+
+  traverseDF(fn) {
+    let arr = [this.root];
+    while(arr.length) {
+      const node = arr.shift();
+      arr.unshift(...node.children);
+      fn(node);
     }
   }
-  return counters;
 }
+
+module.exports({Node, Tree});
