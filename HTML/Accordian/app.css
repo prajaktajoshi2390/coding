@@ -12,7 +12,7 @@
   display: flex;
   justify-content: space-between;
 }
-.section:after {
+.section::after {
     content: "+";
     font-size: 15px;
     font-weight: bold;
