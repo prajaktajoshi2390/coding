@@ -1,0 +1,32 @@
+<!--Microsoft Question-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+    function solution() {
+      // write your code in Javascript
+      //
+      // you can access DOM Tree by using DOM Object Model:
+      //    document.getElementsByTagName
+      // or by using jQuery:
+      //    $('some_tag')
+      const tables = document.getElementsByTagName("table");
+      return Array.from(tables).reduce((max, current) => {
+          const currentTdCount = current.querySelectorAll("td").length;
+          return max > currentTdCount ? max : currentTdCount;
+      }, 0);
+  }
+  solution();
+  console.log(solution());
+</script>
+  </head>
+  <body>
+    <h3>Some test tables</h3>
+<div>
+<p>First table</p>
+    
+</div>
+<p>Second table</p>
+
+  </body>
+</html>

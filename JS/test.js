@@ -1,25 +1,9 @@
-class LinkedList {
-  constructor() {
-    this.head = null;
-  }
-
-  midpoint() {
-    let slow = this.head;
-    let fast =this.head;
-
-    while(fast.next && fast.next.next) {
-      slow = slow.next;
-      fast = fast.next.next;
-    }
-
-    return slow;
-  }
+var obj1 = {
+  a: "A"
 }
-
-const l = new LinkedList();
-l.insertLast('a');
-l.insertLast('b');
-l.insertLast('c');
-l.insertLast('d');
-l.insertLast('e');
-console.log(midpoint(l));
+var obj2 = obj1;
+obj1.b = "B";
+obj2.c = "C";
+console.log(obj2.a);
+console.log(obj2.b);
+console.log(obj1.c);
